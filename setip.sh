@@ -32,7 +32,7 @@ fi
 # Bail if everything is already up to date
 if [ "$newip" == "$oldip" ]
 then
-    echo "up to date - $oldip eq $newip"
+    #echo "up to date - $oldip eq $newip"
     exit 0
 fi
 

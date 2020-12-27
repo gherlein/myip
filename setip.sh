@@ -1,14 +1,24 @@
 #!/bin/bash
 set -e
 
+if [ "$#" -lt 3 ]; then
+    echo "Usage:  $0 <hostname> <aws-zoneid> <aws-nameserver> "
+    exit 1
+fi
+
+# hostname=home.herlein.com
+# zoneid=Z1BH53QHTY1W11
+# nameserver=ns-448.awsdns-56.com
+
 # The host name for which you want to change the DNS IP address
-hostname=home.herlein.com
+hostname=$1
 
 # The AWS id for the zone containing the record, obtained by logging into aws route53
-zoneid=Z1BH53QHTY1W11
+zoneid=$2
 
 # The name server for the zone, can also be obtained from route53
-nameserver=ns-448.awsdns-56.com
+nameserver=$3
+
 
 # Optional -- Uncomment to use the credentials for a named profile
 #export AWS_PROFILE=examplecom
@@ -32,7 +42,7 @@ fi
 # Bail if everything is already up to date
 if [ "$newip" == "$oldip" ]
 then
-    #echo "up to date - $oldip eq $newip"
+    echo "up to date - $oldip eq $newip"
     exit 0
 fi
 
